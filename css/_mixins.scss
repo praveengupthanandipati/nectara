@@ -1,0 +1,184 @@
+// =============================================
+// Mixins
+// =============================================
+@use 'sass:map';
+@use 'variables' as *;
+
+// ── Responsive: min-width (mobile first) ──
+// Usage: @include mq(md) { ... }
+@mixin mq($bp) {
+  @if map.has-key($breakpoints, $bp) {
+    @media (min-width: map.get($breakpoints, $bp)) { @content; }
+  } @else {
+    @media (min-width: $bp) { @content; }
+  }
+}
+
+// ── Responsive: max-width ──
+// Usage: @include mq-down(lg) { ... }
+@mixin mq-down($bp) {
+  @if map.has-key($breakpoints, $bp) {
+    $max: map.get($breakpoints, $bp) - 0.02px;
+    @media (max-width: $max) { @content; }
+  } @else {
+    @media (max-width: $bp) { @content; }
+  }
+}
+
+// ── Flexbox ──
+@mixin flex($justify: flex-start, $align: stretch, $direction: row, $wrap: nowrap) {
+  display: flex;
+  flex-direction: $direction;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+  align-items: $align;
+}
+
+@mixin flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+// ── Positioning ──
+@mixin absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+@mixin cover {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+// ── Devices with a real mouse (no sticky hover on touch screens) ──
+@mixin hover-device {
+  @media (hover: hover) and (pointer: fine) { @content; }
+}
+
+// ── Typography ──
+@mixin font($size: $fs-base, $weight: $fw-regular, $lh: $line-height) {
+  font-size: $size;
+  font-weight: $weight;
+  line-height: $lh;
+}
+
+@mixin heading-font($size, $weight: $fw-semibold) {
+  font-family: $font-heading;
+  font-size: $size;
+  font-weight: $weight;
+  line-height: 1.25;
+}
+
+@mixin truncate($lines: 1) {
+  @if $lines == 1 {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  } @else {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+}
+
+// ── Images / Backgrounds ──
+@mixin bg-cover($url: null) {
+  @if $url { background-image: url($url); }
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+@mixin img-cover {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+@mixin overlay($color: $black, $opacity: 0.5) {
+  position: relative;
+  &::before {
+    content: '';
+    @include cover;
+    background-color: rgba($color, $opacity);
+    z-index: 1;
+  }
+  > * { position: relative; z-index: 2; }
+}
+
+// ── Effects ──
+@mixin transition($props: $transition) {
+  transition: $props;
+}
+
+@mixin hover-lift($distance: -4px) {
+  @include transition;
+  &:hover {
+    transform: translateY($distance);
+    box-shadow: $shadow-lg;
+  }
+}
+
+// ── Buttons ──
+@mixin button($bg: $primary, $color: $white, $hover-bg: $primary-dark) {
+  display: inline-block;
+  padding: 0.75rem 2rem;
+  font-family: $font-body;
+  font-size: $fs-sm;
+  font-weight: $fw-medium;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: $color;
+  background-color: $bg;
+  border: 2px solid $bg;
+  border-radius: $radius-pill;
+  cursor: pointer;
+  @include transition;
+
+  &:hover,
+  &:focus {
+    color: $color;
+    background-color: $hover-bg;
+    border-color: $hover-bg;
+  }
+}
+
+// ── Icon box (round/square icon holder) ──
+@mixin icon-box($size: 56px, $bg: $primary-50, $color: $primary, $radius: 50%) {
+  @include flex-center;
+  flex-shrink: 0;
+  width: $size;
+  height: $size;
+  border-radius: $radius;
+  background: $bg;              // accepts colours or gradients
+  color: $color;
+  font-size: $size * 0.42;
+}
+
+// ── Accessibility ──
+@mixin reduced-motion {
+  @media (prefers-reduced-motion: reduce) { @content; }
+}
+
+@mixin button-outline($color: $primary) {
+  @include button(transparent, $color, $color);
+  border-color: $color;
+
+  &:hover,
+  &:focus {
+    color: $white;
+  }
+}

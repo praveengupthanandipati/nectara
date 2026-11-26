@@ -1,0 +1,107 @@
+// =============================================
+// Variables
+// =============================================
+
+// ── Colors ──
+
+// Primary shades (base #104F28 – Nectara green)
+// 50–400 = tints (mixed with white), 600–900 = shades (mixed with black)
+$primary-50:  #f3f6f4;   // 95% white
+$primary-100: #e7edea;   // 90% white
+$primary-200: #c3d3c9;   // 75% white
+$primary-300: #93b09e;   // 55% white
+$primary-400: #588469;   // 30% white
+$primary-500: #104f28;   // base
+$primary-600: #0e4322;   // 15% black
+$primary-700: #0b371c;   // 30% black
+$primary-800: #092b16;   // 45% black
+$primary-900: #062010;   // 60% black
+
+$primary:        $primary-500;
+$primary-light:  $primary-100;
+$primary-dark:   $primary-600;
+
+// Secondary (base #DA9428 – golden ghee)
+$secondary-50:    #fdfaf4;
+$secondary-100:   #fbf4ea;
+$secondary-200:   #f6e4c9;
+$secondary-300:   #eecf9e;
+$secondary:       #da9428;
+$secondary-dark:  #b97e22;
+
+$dark:           #142a1c;   // deep green-black for headings
+$text:           #42493f;
+$text-light:     #6f776c;
+$light:          #fbf8f1;   // milk cream
+$white:          #ffffff;
+$black:          #000000;
+$border:         #e4e6dc;
+
+// Brand gradients
+$gradient-secondary: linear-gradient(135deg, $secondary 0%, $secondary-dark 100%);
+$gradient-primary: linear-gradient(135deg, $primary-500 0%, $primary-700 100%);
+$gradient-soft:    linear-gradient(135deg, $primary-50 0%, $secondary-50 100%);
+$whatsapp:         #25d366;
+
+// ── Typography ──
+$font-heading: 'Poppins', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+$font-body:    'Poppins', 'Segoe UI', 'Helvetica Neue', Arial, sans-serif;
+
+$fs-base: 1rem;      // 16px
+$fs-sm:   0.875rem;  // 14px
+$fs-lg:   1.125rem;  // 18px
+$fs-h1:   3rem;
+$fs-h2:   2.25rem;
+$fs-h3:   1.75rem;
+$fs-h4:   1.375rem;
+$fs-h5:   1.125rem;
+$fs-h6:   1rem;
+
+$fw-light:    300;
+$fw-regular:  400;
+$fw-medium:   500;
+$fw-semibold: 600;
+$fw-bold:     700;
+
+$line-height: 1.7;
+
+// ── Spacing ──
+$space-xs: 0.25rem;
+$space-sm: 0.5rem;
+$space-md: 1rem;
+$space-lg: 2rem;
+$space-xl: 4rem;
+$section-padding: 5rem;
+
+// ── Borders / Radius / Shadows ──
+$radius-sm: 4px;
+$radius:    8px;
+$radius-lg: 16px;
+$radius-pill: 50rem;
+
+$shadow-sm: 0 2px 6px rgba($black, 0.06);
+$shadow:    0 6px 20px rgba($black, 0.08);
+$shadow-lg: 0 12px 40px rgba($black, 0.12);
+
+// ── Transitions ──
+$transition: all 0.3s ease-in-out;
+
+// ── Breakpoints (match Bootstrap 5) ──
+$breakpoints: (
+  sm:  576px,
+  md:  768px,
+  lg:  992px,
+  xl:  1200px,
+  xxl: 1400px
+);
+
+// ── Layout ──
+$container-width: 90%;
+$container-max:   1680px;   // stops lines getting too long on very wide screens
+
+// ── Header ──
+$header-height:    88px;    // desktop (xl and up)
+$header-height-sm: 72px;    // mobile / tablet
+// Must sit above Bootstrap's offcanvas backdrop (1040) so the
+// off-canvas menu, which lives inside the header, is not dimmed.
+$z-header: 1041;
