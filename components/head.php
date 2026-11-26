@@ -82,7 +82,8 @@ $schema = array_merge($schema, $page['schema']);
     <meta name="twitter:description" content="<?= e($page['description']) ?>">
     <meta name="twitter:image" content="<?= e($ogImage) ?>">
 
-    <link rel="icon" type="image/svg+xml" href="<?= e($site['logo']) ?>">
+    <link rel="icon" type="image/png" sizes="36x36" href="<?= e($site['favicon']) ?>">
+    <link rel="apple-touch-icon" href="<?= e($site['favicon']) ?>">
 
     <!-- ── Fonts ── -->
     <link rel="preconnect" href="https://fonts.googleapis.com">

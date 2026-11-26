@@ -36,6 +36,7 @@ return [
         'whatsapp'    => '917799971112',          // country code + number, no + or spaces
         'email'       => 'info@nectaranaturals.com',
         'logo'        => 'img/logo.svg',
+        'favicon'     => 'img/fav.png',
         'site_url'    => 'https://www.nectaranaturals.com',   // enables canonical URLs
         'theme_color' => '#104F28',
         'map_embed'   => 'https://www.google.com/maps?q=Mallampet,Hyderabad,Telangana&output=embed',
